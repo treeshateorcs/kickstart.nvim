@@ -90,8 +90,15 @@ P.S. You can delete this when you're done too. It's your config now! :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.opt.colorcolumn = '80'
+vim.opt.cursorcolumn = true
+vim.opt.wrap = true
+vim.opt.wrapscan = false
+vim.opt.cursorlineopt = 'both'
+vim.opt.whichwrap = '[],b,s'
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -156,6 +163,15 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
+
+vim.keymap.set({ 'n', 'i', 'v' }, '<C-c>', '<ESC>:wq!<cr>')
+vim.keymap.set({ 'n', 'i', 'v' }, '<C-s>', '<ESC>:w!<cr>')
+vim.keymap.set('n', 'j', 'gj')
+vim.keymap.set('n', 'k', 'gk')
+vim.keymap.set({ 'n', 'i', 'v' }, '<2-LeftMouse>', '<LeftMouse>')
+vim.keymap.set({ 'n', 'i', 'v' }, '<LeftMouse>', '<Nop>')
+vim.keymap.set('v', '>', '>gv', { desc = 'indent' })
+-- vim.keymap.del('n', '<tab>')
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -779,9 +795,9 @@ require('lazy').setup({
 
           -- If you prefer more traditional completion keymaps,
           -- you can uncomment the following lines
-          --['<CR>'] = cmp.mapping.confirm { select = true },
-          --['<Tab>'] = cmp.mapping.select_next_item(),
-          --['<S-Tab>'] = cmp.mapping.select_prev_item(),
+          ['<CR>'] = cmp.mapping.confirm { select = true },
+          ['<Tab>'] = cmp.mapping.select_next_item(),
+          ['<S-Tab>'] = cmp.mapping.select_prev_item(),
 
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
